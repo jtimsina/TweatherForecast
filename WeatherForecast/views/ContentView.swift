@@ -15,6 +15,7 @@ struct ContentView: View {
     @State var isActive: Bool = false
     
     var body: some View {
+    
         ZStack {
                     if self.isActive {
                         if let location = locationManager.location {
@@ -27,7 +28,6 @@ struct ContentView: View {
                                             weather = try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
                                         } catch {
                                             //DO NOTHING
-                                            print(error) //remove print statement
                                         }
                                     }
                             }
@@ -45,6 +45,7 @@ struct ContentView: View {
                             .frame(width: 300, height: 300)
                     }
                 }
+
                 .onAppear {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                         withAnimation {
@@ -55,9 +56,6 @@ struct ContentView: View {
                 }
                 .background(Color.clear)
                 .preferredColorScheme(.dark)
-                .refreshable {
-                    print("Do your refresh work here")
-                }
     }
 }
 
