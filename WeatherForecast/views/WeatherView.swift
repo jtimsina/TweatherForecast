@@ -10,22 +10,18 @@ import SwiftUI
 struct WeatherView: View {
   
     @StateObject var locationManager = LocationManager()
-    var weatherManager = WeatherManager()
-    @State var weather: ResponseBody?
-    @ObservedObject var reloadViewHelper = ReloadViewHelper()
+    @StateObject var weatherManager = WeatherManager()
     
     var body: some View {
         ScrollView {
             ZStack(alignment: .leading) {
                 VStack {
                     VStack(alignment: .leading, spacing: 20) {
-                        Text(weather?.name ?? "City")
+                        Text(weatherManager.weather?.name ?? "City")
                             .bold()
                             .font(.title)
-
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
-                    
                     
                     VStack {
                         HStack {
@@ -35,9 +31,8 @@ struct WeatherView: View {
                                 
                             }
                             .frame(width: 130, alignment: .leading)
-                          
-
-                            Text("\(Int((weather?.main.feelsLike ?? 1) * 1.8 + 32))" + "°")
+                            
+                            Text("\(Int((weatherManager.weather?.main.feelsLike ?? 1) * 1.8 + 32))" + "°")
                                 .font(.system(size: 100))
                                 .fontWeight(.bold)
                                 .padding()
@@ -52,19 +47,19 @@ struct WeatherView: View {
                             .padding(.bottom)
                         
                         HStack {
-                            WeatherRow(logo: "thermometer", name: "Todays Min", value: ("\(Int((weather?.main.tempMin ?? 1) * 1.8 + 32))" + ("°")))
+                            WeatherRow(logo: "thermometer", name: "Todays Min", value: ("\(Int((weatherManager.weather?.main.tempMin ?? 1) * 1.8 + 32))" + ("°")))
                             Spacer()
-                            WeatherRow(logo: "wind", name: "Wind speed", value: ("\(( weather?.wind.speed) ?? 0)" + " m/s"))
+                            WeatherRow(logo: "wind", name: "Wind speed", value: ("\(( weatherManager.weather?.wind.speed) ?? 0)" + " m/s"))
                         }
                         
                         HStack {
-                            WeatherRow(logo: "thermometer", name: "Todays Max", value: ("\(Int((weather?.main.tempMax ?? 1) * 1.8 + 32))" + "°"))
+                            WeatherRow(logo: "thermometer", name: "Todays Max", value: ("\(Int(weatherManager.weather?.main.tempMax ?? 1) * Int(1.8) + 32))" + "°"))
                             Spacer()
-                            WeatherRow(logo: "humidity", name: "Humidity", value: "\(weather?.main.humidity ?? 0)%")
+                            WeatherRow(logo: "humidity", name: "Humidity", value: "\(weatherManager.weather?.main.humidity ?? 0)%")
                         }
-                      
+                        
                         HStack {
-                            if (weather?.weather[0].description == "clear sky"){
+                            if (weatherManager.weather?.weather[0].description == "clear sky"){
                                 Image("clearSky")
                                     .resizable()
                                     .scaledToFit()
@@ -75,15 +70,16 @@ struct WeatherView: View {
                                     .scaledToFit()
                                     .frame(width: 300, height: 300)
                             }
-                            
                         }
+                        
                         Spacer()
+                        
                         Text("The Free API contains only the current location, hence there is no way to show full 1 week forecast unless subscribed to paid API call that give current location Weather Forecast.")
                             .font(.system(size: 12))
                     }
                     .frame(maxWidth: .infinity, alignment: .trailing)
                     
-
+                    
                 }
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -92,15 +88,24 @@ struct WeatherView: View {
             .edgesIgnoringSafeArea(.bottom)
             .background(Color.black)
             .preferredColorScheme(.light)
-        }
-        .refreshable {
-            do {
-                weather = try await weatherManager.getCurrentWeather(latitude: locationManager.location?.latitude ?? 39.90311, longitude: locationManager.location?.longitude ?? -76.83659)
-                locationManager.requestLocation()
-                reloadViewHelper.reloadView()
-            } catch {
-                //DO NOTHING
-                print (String(describing: error))
+            .onChange(of: locationManager.location, perform: { newValue in
+                Task{
+                    if locationManager.location != nil{
+                        try await weatherManager.getCurrentWeather(latitude: locationManager.location?.latitude ?? 39.90311, longitude: locationManager.location?.longitude ?? -76.83659)
+                    }
+                }
+            }
+            )
+        }.refreshable {
+            Task{
+                do {
+                    if locationManager.location != nil{
+                        try await weatherManager.getCurrentWeather(latitude: locationManager.location?.latitude ?? 39.90311, longitude: locationManager.location?.longitude ?? -76.83659)
+                    }
+                } catch {
+                    //DO NOTHING
+                    print (String(describing: error))
+                }
             }
         }
     }

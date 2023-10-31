@@ -21,7 +21,6 @@
 		F17DB7D92AEDE00100400B3B /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17DB7D82AEDE00100400B3B /* WeatherManager.swift */; };
 		F17DB7DE2AEDE05B00400B3B /* ModelForResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17DB7DD2AEDE05B00400B3B /* ModelForResponse.swift */; };
 		F17DB7E12AEDE18500400B3B /* WeatherRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17DB7E02AEDE18500400B3B /* WeatherRow.swift */; };
-		F1F8BA112AF001FC0077E1D4 /* Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F8BA102AF001FC0077E1D4 /* Extention.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,7 +58,6 @@
 		F17DB7D82AEDE00100400B3B /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		F17DB7DD2AEDE05B00400B3B /* ModelForResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelForResponse.swift; sourceTree = "<group>"; };
 		F17DB7E02AEDE18500400B3B /* WeatherRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRow.swift; sourceTree = "<group>"; };
-		F1F8BA102AF001FC0077E1D4 /* Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extention.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,7 +111,6 @@
 				F17DB7952AEC170800400B3B /* WeatherForecastApp.swift */,
 				F17DB7C12AEDDC9700400B3B /* Managers */,
 				F17DB7DA2AEDE01A00400B3B /* Model */,
-				F1F8BA0F2AF001D30077E1D4 /* Extention */,
 				F17DB7BF2AEDDC6E00400B3B /* views */,
 				F17DB7992AEC171200400B3B /* Assets.xcassets */,
 				F17DB7DF2AEDE16F00400B3B /* HelperFile */,
@@ -197,14 +194,6 @@
 				F17DB7E02AEDE18500400B3B /* WeatherRow.swift */,
 			);
 			path = HelperFile;
-			sourceTree = "<group>";
-		};
-		F1F8BA0F2AF001D30077E1D4 /* Extention */ = {
-			isa = PBXGroup;
-			children = (
-				F1F8BA102AF001FC0077E1D4 /* Extention.swift */,
-			);
-			path = Extention;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,7 +330,6 @@
 				F17DB7982AEC170800400B3B /* ContentView.swift in Sources */,
 				F17DB7D92AEDE00100400B3B /* WeatherManager.swift in Sources */,
 				F17DB7D12AEDDE1A00400B3B /* LocationManager.swift in Sources */,
-				F1F8BA112AF001FC0077E1D4 /* Extention.swift in Sources */,
 				F17DB7E12AEDE18500400B3B /* WeatherRow.swift in Sources */,
 				F17DB7962AEC170800400B3B /* WeatherForecastApp.swift in Sources */,
 				F17DB7CB2AEDDDB600400B3B /* LoadingOverlay.swift in Sources */,

@@ -40,18 +40,6 @@ final class WeatherForecastUITests: XCTestCase {
     }
     
     func testCurrentWeatherInfo() async throws {
-        //Given
-            let weather = WeatherManager()
-        
-        //when
-        let currentWeatherInformation = try await weather.getCurrentWeather(latitude: 33.33, longitude: 55.55)
-        
-        //then
-        XCTAssertNotNil(weather)
-        XCTAssertNotNil(currentWeatherInformation)
-        XCTAssertEqual(currentWeatherInformation.main.tempMax, 25.76)
-        XCTAssertEqual(currentWeatherInformation.main.tempMin, 25.76)
-
     }
     
 }

@@ -10,8 +10,7 @@ import SwiftUI
 struct ContentView: View {
     // Replace YOUR_API_KEY in WeatherManager with your own API key for the app to work
     @StateObject var locationManager = LocationManager()
-    var weatherManager = WeatherManager()
-    @State var weather: ResponseBody?
+    @StateObject var weatherManager = WeatherManager()
     @State var isActive: Bool = false
     
     var body: some View {
@@ -19,13 +18,13 @@ struct ContentView: View {
         ZStack {
                     if self.isActive {
                         if let location = locationManager.location {
-                            if let weather = weather {
-                                WeatherView(weather: weather)
+                            if weatherManager.weather != nil {
+                                WeatherView()
                             } else {
                                 LoadingOverlay()
                                     .task {
                                         do {
-                                            weather = try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
+                                             try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
                                         } catch {
                                             //DO NOTHING
                                         }

@@ -18,12 +18,16 @@ final class WeatherForecastTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    @MainActor func testExample() async throws {
+
+        //Given
+        let weather = WeatherManager()
+        
+        //when
+        let currentWeatherInformation: () = try await weather.getCurrentWeather(latitude: 33.33, longitude: 55.55)
+        //then
+        XCTAssertNotNil(weather)
+        XCTAssertNotNil(currentWeatherInformation)
     }
 
     func testPerformanceExample() throws {

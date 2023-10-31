@@ -17,23 +17,36 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     override init() {
         super.init()
-        
-        manager.delegate = self
+        requestLocation()
     }
     
     func requestLocation() {
         isLoading = true
-        manager.requestLocation()
+        manager.requestWhenInUseAuthorization()
+        manager.delegate = self
+
+        DispatchQueue.main.async {
+            self.manager.startUpdatingLocation()
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        location = locations.first?.coordinate
-        isLoading = false
+        DispatchQueue.main.async {
+            self.location = locations.first?.coordinate
+            self.isLoading = false
+        }
     }
     
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         isLoading = false
+
+    }
+}
+
+extension CLLocationCoordinate2D: Equatable {
+    public static func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
+        lhs.latitude == rhs.latitude  &&  lhs.longitude == rhs.longitude
     }
 }
 
