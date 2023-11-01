@@ -8,33 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
-    // Replace YOUR_API_KEY in WeatherManager with your own API key for the app to work
-    @StateObject var locationManager = LocationManager()
-    @StateObject var weatherManager = WeatherManager()
+
+    @StateObject var weatherViewModel = WeatherViewModel()
     @State var isActive: Bool = false
     
     var body: some View {
-    
         ZStack {
                     if self.isActive {
-                        if let location = locationManager.location {
-                            if weatherManager.weather != nil {
+                   
+                        if weatherViewModel.weatherData != nil {
                                 WeatherView()
                             } else {
                                 LoadingOverlay()
-                                    .task {
-                                        do {
-                                             try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
-                                        } catch {
-                                            //DO NOTHING
-                                        }
-                                    }
                             }
-                        } else if locationManager.isLoading {
-                            LoadingOverlay()
-                        } else {
-                            WelcomeView().environmentObject(locationManager)
-                        }
+                        
                     } else {
                         Rectangle()
                             .background(Color.white)

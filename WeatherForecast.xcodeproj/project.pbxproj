@@ -21,6 +21,7 @@
 		F17DB7D92AEDE00100400B3B /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17DB7D82AEDE00100400B3B /* WeatherManager.swift */; };
 		F17DB7DE2AEDE05B00400B3B /* ModelForResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17DB7DD2AEDE05B00400B3B /* ModelForResponse.swift */; };
 		F17DB7E12AEDE18500400B3B /* WeatherRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17DB7E02AEDE18500400B3B /* WeatherRow.swift */; };
+		F1F8BA192AF2E8B50077E1D4 /* weatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F8BA182AF2E8B50077E1D4 /* weatherViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		F17DB7D82AEDE00100400B3B /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		F17DB7DD2AEDE05B00400B3B /* ModelForResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelForResponse.swift; sourceTree = "<group>"; };
 		F17DB7E02AEDE18500400B3B /* WeatherRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRow.swift; sourceTree = "<group>"; };
+		F1F8BA182AF2E8B50077E1D4 /* weatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weatherViewModel.swift; sourceTree = "<group>"; };
+		F1F8BA1A2AF2EDA20077E1D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,10 +111,12 @@
 		F17DB7942AEC170800400B3B /* WeatherForecast */ = {
 			isa = PBXGroup;
 			children = (
+				F1F8BA1A2AF2EDA20077E1D4 /* Info.plist */,
 				F17DB7952AEC170800400B3B /* WeatherForecastApp.swift */,
 				F17DB7C12AEDDC9700400B3B /* Managers */,
-				F17DB7DA2AEDE01A00400B3B /* Model */,
 				F17DB7BF2AEDDC6E00400B3B /* views */,
+				F17DB7DA2AEDE01A00400B3B /* Model */,
+				F1F8BA172AF2E8A60077E1D4 /* VModel */,
 				F17DB7992AEC171200400B3B /* Assets.xcassets */,
 				F17DB7DF2AEDE16F00400B3B /* HelperFile */,
 				F17DB79B2AEC171200400B3B /* Preview Content */,
@@ -194,6 +199,14 @@
 				F17DB7E02AEDE18500400B3B /* WeatherRow.swift */,
 			);
 			path = HelperFile;
+			sourceTree = "<group>";
+		};
+		F1F8BA172AF2E8A60077E1D4 /* VModel */ = {
+			isa = PBXGroup;
+			children = (
+				F1F8BA182AF2E8B50077E1D4 /* weatherViewModel.swift */,
+			);
+			path = VModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,6 +348,7 @@
 				F17DB7CB2AEDDDB600400B3B /* LoadingOverlay.swift in Sources */,
 				F17DB7C92AEDDDA900400B3B /* WelcomeView.swift in Sources */,
 				F17DB7DE2AEDE05B00400B3B /* ModelForResponse.swift in Sources */,
+				F1F8BA192AF2E8B50077E1D4 /* weatherViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +509,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"WeatherForecast/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WeatherForecast/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -523,6 +538,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"WeatherForecast/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WeatherForecast/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

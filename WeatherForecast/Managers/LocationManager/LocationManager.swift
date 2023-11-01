@@ -10,7 +10,7 @@ import CoreLocation
 
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
-    let manager = CLLocationManager()
+    private let manager = CLLocationManager()
     
     @Published var location: CLLocationCoordinate2D?
     @Published var isLoading = false
@@ -24,17 +24,13 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         isLoading = true
         manager.requestWhenInUseAuthorization()
         manager.delegate = self
-
-        DispatchQueue.main.async {
-            self.manager.startUpdatingLocation()
-        }
+        manager.startUpdatingLocation()
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        DispatchQueue.main.async {
             self.location = locations.first?.coordinate
             self.isLoading = false
-        }
     }
     
     
