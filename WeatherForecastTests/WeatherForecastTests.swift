@@ -9,27 +9,30 @@ import XCTest
 @testable import WeatherForecast
 
 final class WeatherForecastTests: XCTestCase {
-
+    
+    private var weatherViewModel: WeatherViewModel!
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        weatherViewModel = WeatherViewModel()
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    @MainActor func testExample() async throws {
-
-        //Given
-        let weather = WeatherManager()
-        
-        //when
-        let currentWeatherInformation: () = try await weather.getCurrentWeather(latitude: 33.33, longitude: 55.55)
-        //then
-        XCTAssertNotNil(weather)
-        XCTAssertNotNil(currentWeatherInformation)
+    func testNetWorkCall() {
+        XCTAssertNotNil(weatherViewModel.weatherData)
+        XCTAssertNotNil(weatherViewModel.weatherData?.name)
+        XCTAssertNotNil(weatherViewModel.weatherData?.main.tempMin)
+        XCTAssertNotNil(weatherViewModel.weatherData?.main.tempMax)
+        XCTAssertNotNil(weatherViewModel.weatherData?.main.humidity)
+        XCTAssertNotNil(weatherViewModel.weatherData?.wind.speed)
+        XCTAssertGreaterThan(Int(weatherViewModel.weatherData?.main.tempMax ?? 0), Int(weatherViewModel.weatherData?.main.tempMin ?? 0))
     }
-
+    
+    func testUiComments(){
+        
+    }
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
         self.measure {
