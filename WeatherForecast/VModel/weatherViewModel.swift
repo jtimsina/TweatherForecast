@@ -11,12 +11,12 @@ import Combine
 class WeatherViewModel: ObservableObject {
     
     private let locationManager: LocationManager
-    private let weatherManager: WeatherManager
+    private let weatherManager: WeatherContract
     private var anyCancellable: AnyCancellable?
     
     @Published var weatherData: ResponseBody?
     
-    init(locationManager: LocationManager = LocationManager(), weatherManager: WeatherManager = WeatherManager()) {
+    init(locationManager: LocationManager = LocationManager(), weatherManager: WeatherContract = WeatherManager()) {
         self.locationManager = locationManager
         self.weatherManager = weatherManager
         getLocation()

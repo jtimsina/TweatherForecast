@@ -7,20 +7,22 @@
 
 import XCTest
 @testable import WeatherForecast
+import CoreLocation
 
 final class WeatherForecastTests: XCTestCase {
     
     private var weatherViewModel: WeatherViewModel!
-    
+    let fakeWeatherDataManager: WeatherContract = FakeWeatherDataManager()
     override func setUpWithError() throws {
-        weatherViewModel = WeatherViewModel()
+        weatherViewModel = WeatherViewModel(weatherManager: fakeWeatherDataManager)
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testNetWorkCall() {
+    func testNetWorkCallSuccess() async {
+        await weatherViewModel.getWeather(for: CLLocationCoordinate2D(latitude: 10.0, longitude: 100.0))
         XCTAssertNotNil(weatherViewModel.weatherData)
         XCTAssertNotNil(weatherViewModel.weatherData?.name)
         XCTAssertNotNil(weatherViewModel.weatherData?.main.tempMin)
@@ -32,12 +34,6 @@ final class WeatherForecastTests: XCTestCase {
     
     func testUiComments(){
         
-    }
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
     }
 
 }

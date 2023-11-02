@@ -13,7 +13,11 @@ enum WeatherError: Error {
     case networkError
 }
 
-class WeatherManager {
+protocol WeatherContract {
+    func getCurrentWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees)async throws -> ResponseBody
+}
+
+class WeatherManager: WeatherContract {
 
     @Published var weather: ResponseBody?
     
